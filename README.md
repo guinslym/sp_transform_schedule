@@ -10,7 +10,7 @@ This script will help transform the output of a shedule.xlsx file so that it can
 
 ### output 
 
-[schedule]:./example.png "Schedule"
+[schedule]:https://github.com/guinslym/sp_transform_schedule/blob/master/example.png "Schedule"
 
 ## todo
 1. transform to package
