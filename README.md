@@ -4,7 +4,13 @@ This script will help transform the output of a shedule.xlsx file so that it can
 
 ### command
 
+    poetry install
+    # add the current Ask schedule to this folder
     poetry run python horaire.py
+
+### output 
+
+[schedule]:example.png "Schedule"
 
 ## todo
 1. transform to package
