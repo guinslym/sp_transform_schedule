@@ -11,7 +11,7 @@ This script will help transform the output of a shedule.xlsx file so that it can
 ### output 
 
 
-![alt text](https://github.com/guinslym/sp_transform_schedule/blob/master/example.png "Schedule")
+![alt text](https://github.com/guinslym/sp_transform_schedule/blob/master/example_output.png "Schedule")
 
 
 ## todo
