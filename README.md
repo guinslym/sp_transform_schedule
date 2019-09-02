@@ -20,3 +20,4 @@ This script will help transform the output of a shedule.xlsx file so that it can
 1. transform to package
 2. test it
 3. Removed unused column
+4. Remove back-to-back school name on columns
