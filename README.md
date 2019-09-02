@@ -6,6 +6,7 @@ This script will help transform the output of a shedule.xlsx file so that it can
 
     poetry install
     # add the current Ask schedule (Excel file; Sheet1) to this folder
+    # rename that file schedule.xlsx
     # Change the Time column (10:00:00 AM) format to Integer or Text (10)
     poetry run python horaire.py
 
