@@ -96,6 +96,8 @@ def find_school_color(school):
         return "#7acfdb"
     elif school == "UOIT":
         return "#cf002F"
+    elif school == "OTECH":
+        return "#cf002F"
     elif school == "Laurentian":
         return "#75b390"
     elif school == "Guelph-humber":
