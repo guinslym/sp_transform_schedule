@@ -242,7 +242,7 @@ for day in ['Friday', 'Saturday', 'Sunday']:
 wb.save(filename = dir_path + '/schedule_output.xlsx')
 
 
-    
+
 """
 Delete unused column --- do it manually instead
 
