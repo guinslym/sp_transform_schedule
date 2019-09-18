@@ -241,23 +241,35 @@ for day in ['Friday', 'Saturday', 'Sunday']:
 
 wb.save(filename = dir_path + '/schedule_output.xlsx')
 
+
+    
 """
 Delete unused column --- do it manually instead
 
 or
-print(sheet_name['C8'].value)
-#ws.delete_cols(6, 3)
+from openpyxl import load_workbook
+wb = load_workbook(filename = 'schedule_output.xlsx')
 
+#create manually a new sheet 
+sheet_name = wb['Sheet1']
 have_content = False
-for row in range(1,18):
-    cell = 'G'+str(row)
-    content = sheet_name[cell].value
-    if content != None:
-        have_content = True
-if have_content == False:
-    sheet_name.delete_cols(7,3)
+for col in ['F','G', 'H', 'I', 'J', 'K']:
+    for row in range(1,5):
+        cell = col+str(row)
+        print(str(col)+str(row))
+        content = sheet_name[cell].value
+        print(content)
+        if content != None:
+            have_content = True
+            print("Have content in " + col + " :: "+ content    )
+            break
+    if have_content == True:
+        sheet_name.delete_cols(7,1)
+    content = None
+    have_content = False
 
 
+###  TODO there is a bug in column
 
 wb.save(filename = dir_path + '/schedule_output.xlsx')
 """
