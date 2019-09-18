@@ -21,4 +21,3 @@ This script will help transform the output of a shedule.xlsx file so that it can
 2. test it
 3. Removed unused column automatically
 4. Remove back-to-back school name on columns
-5. Change the color for Brock (currently same from Carleton)

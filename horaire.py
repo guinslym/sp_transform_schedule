@@ -185,7 +185,7 @@ def write_schedule(day, day_schedule):
     worksheet = workbook.add_worksheet(day)
     prepare_sheet(worksheet)
     format_day_name = workbook.add_format()
-    format_day_name.set_font_size(55)
+    format_day_name.set_font_size(36)
     format_day_name.set_bold()
     format_day_name.set_align('left')
     # Write some data headers.
