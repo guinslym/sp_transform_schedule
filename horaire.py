@@ -5,6 +5,15 @@ import operator
 from pprint import pprint as print
 import datetime
 
+
+#Development
+from logbook import Logger, StreamHandler
+import sys
+StreamHandler(sys.stdout).push_application()
+log = Logger('Logbook')
+log.info('Hello, World!')
+log.warn('This is too cool for stdlib')
+
 # current directory
 dir_path = os.path.dirname(os.path.realpath(__file__))
 filename = dir_path + '/schedule.xlsx'
@@ -132,6 +141,8 @@ def find_school_format(school):
 
     school_format.set_font_size(20)
     school_format.set_align('center')
+    if len(school) > 3:
+        school_format.set_border(1)
     #school_format.set_center_across()
     school_format.set_font_color('#FFFFFF')
     return school_format
@@ -227,6 +238,119 @@ write_schedule("Friday", friday_schedule)
 write_schedule("Saturday", saturday_schedule)
 write_schedule("Sunday", sunday_schedule)
 
+#workbook.close()
+
+
+column = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P']
+sheet_name = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+#sheet_name = ['Monday', 'Tuesday',  'Wednesday']
+
+
+def find_same_cell_value_as_previous():
+    book = xlrd.open_workbook('schedule_output.xlsx')
+    same_cell_value_as_previous_cell = list()
+    for day in sheet_name:
+            current_sheet = book.sheet_by_name(sheet_name=day)
+            precedent = 'Uni'
+            if day == 'Wednesday':
+                import pdb
+                #pdb.set_trace()
+            for current_col in range(2, len(column)-1):
+                for i in range(2,25):
+                    try:
+                        current = current_sheet.cell(i,current_col).value
+                        if len(current) > 2:
+                            if current == precedent:
+                                ajustement = 0
+                                cell_value = column[current_col] + str(i+1)+'--:' + current + "--:" + day
+                                same_cell_value_as_previous_cell.append(cell_value)
+                            precedent = current
+                    except IndexError:
+                        pass
+                    except TypeError:
+                        pass
+    return same_cell_value_as_previous_cell
+
+same_cell_value_as_previous_cell = find_same_cell_value_as_previous()
+
+tuesday_only = [tuesday for tuesday in same_cell_value_as_previous_cell if 'uesday' in tuesday]
+for cell in same_cell_value_as_previous_cell:
+    location = cell.split('--:')[0]
+    if 'C' in location:
+        #print(cell)
+        pass    
+
+list_of_schools = [
+"Toronto",
+"Ottawa",
+"Ryerson",
+"York",
+"Guelph",
+"Brock",
+"Western",
+"Algoma",
+"Carleton",
+"Lakehead",
+"UOIT",
+"OTECH",
+"Laurentian",
+"G-Humber",
+"McMaster",
+"st-paul",
+"Queens"
+]
+
+
+# removing Mentee name and other cells
+duplicate = list()
+for cell in same_cell_value_as_previous_cell:
+    if 'ening' not in cell:
+        if 'eekday' not in cell:
+            if cell.split('--:')[1] in list_of_schools:
+                #print(cell.split('--:'))
+                duplicate.append(cell)
+
+
+#print(duplicate)
+
+
+monday_only = [monday for monday in duplicate if 'monday' in monday.lower()]
+tuesday_only = [tuesday for tuesday in duplicate if 'tuesday' in tuesday.lower()]
+wednesday_only = [wednesday for wednesday in duplicate if 'wednesday' in wednesday.lower()]
+thursday_only = [thursday for thursday in duplicate if 'thursday' in thursday.lower()]
+friday_only = [friday for friday in duplicate if 'friday' in friday.lower()]
+saturday_only = [saturday for saturday in duplicate if 'saturday' in saturday.lower()]
+sunday_only = [sunday for sunday in duplicate if 'sunday' in sunday.lower()]
+print('\n\n\n')
+print('-'*10)
+print('-'*10)
+#print(sunday_only)
+
+
+def remove_following_cell(workbook, day, specific_day):
+    worksheet =  workbook.get_worksheet_by_name(day)
+    for cell in specific_day:
+        location = cell.split('--:')[0]
+        col = location[0]
+        number = int(location[1::])
+        school = cell.split('--:')[1]
+        cell_format = workbook.add_format()
+        #cell_format.set_bg_color('#FF00FF')
+        #import pdb; pdb.set_trace() 
+        if number < 15:
+            try:
+                worksheet.write(location, "", find_school_format(school))
+            except:
+                pass
+
+
+remove_following_cell(workbook, 'Monday', monday_only)
+remove_following_cell(workbook, 'Sunday', sunday_only)
+
+
+#TODO for each verify the school back to back
+
+#230
 workbook.close()
 
 from openpyxl import load_workbook

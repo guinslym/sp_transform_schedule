@@ -95,3 +95,8 @@ ENV/
 .ropeproject
 
 ~$*
+# remove all the To Trash file or folder
+tt_*
+schedule.xls*
+schedule_outp*
+

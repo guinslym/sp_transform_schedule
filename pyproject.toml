@@ -9,9 +9,12 @@ python = "^3.6"
 xlrd = "^1.2"
 XlsxWriter = "^1.2"
 openpyxl = "^2.6"
+colorlog = "^4.0"
+coloredlogs = "^10.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
+logbook = "^1.5"
 
 [build-system]
 requires = ["poetry>=0.12"]
