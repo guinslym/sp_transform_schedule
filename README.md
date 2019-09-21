@@ -21,4 +21,5 @@ This script will help transform the output of a shedule.xlsx file so that it can
 2. test it
 3. Removed unused column automatically
 4. Need the same Hex color as Illustrator file
+4. Put every "standalone statement" in a function
 5. Remove back-to-back school name on columns
