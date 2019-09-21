@@ -93,7 +93,7 @@ def find_school_color(school):
     elif school == "York":
         return "#df1f26"
     elif school == "Guelph":
-        return "#f79027"
+        return "#F78F27"
     elif school == "Brock":
         return "#7ecb4a"
     elif school == "Western":
@@ -101,25 +101,27 @@ def find_school_color(school):
     elif school == "Algoma":
         return "#5c0e41"
     elif school == "Carleton":
-        return "#1b8b48"
+        return "#1E1F57"
     elif school == "Lakehead":
         return "#7acfdb"
     elif school == "UOIT":
-        return "#30d6b1"
+        return "#02919F"
     elif school == "OTECH":
-        return "#cf5029"
+        return "#02919F"
     elif school == "Laurentian":
         return "#75b390"
     elif school == "G-Humber":
-        return "#a65fa9"
+        return "#E064A5"
     elif "umber" in school:
-        return "#a65fa9"
+        return "#E064A5"
     elif school == "McMaster":
         return "#7e2818"  
     elif school == "st-paul":
         return "#3e3e3d" 
     elif school == "Queens":
         return "#9f1f63" 
+    elif 'Portal' in school:
+        return '#231F20'
     elif school == "":
         return "#FFFFFF"    
     else:
