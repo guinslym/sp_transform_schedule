@@ -11,14 +11,15 @@ from logbook import Logger, StreamHandler
 import sys
 StreamHandler(sys.stdout).push_application()
 log = Logger('Logbook')
-log.info('Hello, World!')
-log.warn('This is too cool for stdlib')
+#log.warn('This is too cool for stdlib')
 
 # current directory
 dir_path = os.path.dirname(os.path.realpath(__file__))
 filename = dir_path + '/schedule.xlsx'
 
 import openpyxl
+from openpyxl import load_workbook
+
 import xlsxwriter
 workbook = xlsxwriter.Workbook(filename)
 
@@ -271,6 +272,7 @@ def find_same_cell_value_as_previous():
                         pass
     return same_cell_value_as_previous_cell
 
+
 same_cell_value_as_previous_cell = find_same_cell_value_as_previous()
 
 tuesday_only = [tuesday for tuesday in same_cell_value_as_previous_cell if 'uesday' in tuesday]
@@ -335,8 +337,6 @@ def remove_following_cell(workbook, day, specific_day):
         number = int(location[1::])
         school = cell.split('--:')[1]
         cell_format = workbook.add_format()
-        #cell_format.set_bg_color('#FF00FF')
-        #import pdb; pdb.set_trace() 
         if number < 15:
             try:
                 worksheet.write(location, "", find_school_format(school))
@@ -344,18 +344,26 @@ def remove_following_cell(workbook, day, specific_day):
                 pass
 
 
+day_only = [monday_only, tuesday_only, wednesday_only,
+            thursday_only, friday_only, saturday_only, sunday_only]
+day_name = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+
 remove_following_cell(workbook, 'Monday', monday_only)
+remove_following_cell(workbook, 'Tuesday', tuesday_only)
+remove_following_cell(workbook, 'Wednesday', wednesday_only)
+remove_following_cell(workbook, 'Thursday', thursday_only)
+remove_following_cell(workbook, 'Friday', friday_only)
+remove_following_cell(workbook, 'Saturday', saturday_only)
 remove_following_cell(workbook, 'Sunday', sunday_only)
-
-
-#TODO for each verify the school back to back
 
 #230
 workbook.close()
 
-from openpyxl import load_workbook
+
+#from openpyxl
 wb = load_workbook(filename = 'schedule_output.xlsx')
-sheet_name = wb['Friday']
+
 
 
 # or
